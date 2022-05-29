@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <title>Facial Recognition Service</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='lodash.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='immutable.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='axios.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <h1>Attendance System</h1>
+
+    <ul class="tabs">
+        <li data-section="train-content">Add New Student</li>
+        <li data-section="recognize-content">Mark Attendance</li>
+    </ul>
+    <div id="train-content">
+        <h2>Enter New Student</h2>
+        <form method="post" id="train">
+            <div class="message">
+
+            </div>
+            <p class="description">Upload an image containing student's face along with other details for recognizing later</p>
+            <div class="form-item">
+                <label for="input-file">Face image</label>
+                <input type="file" name="file" id="input-file" accept="image/*"/>
+            </div>
+            <div class="form-item">
+                <label>Full name</label>
+                <input id="name-field" name="name" value="" type="text" placeholder="Full name"/>
+            </div>
+            <div class="form-item">
+                <label>Enrollment Number</label>
+                <input id="en_no" name="en_no" value="" type="text" placeholder="Enrollment Number"/>
+            </div>
+            <div class="form-action">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="recognize-content">
+        <h2>Mark Attendance</h2>
+
+        <form  id="recognize">
+            <div class="message">
+
+            </div>
+            <p class="description">Capture image for marking attendance.</p>
+            <div class="form-item">
+                <label>Subject</label>
+                <input id="subject" name="subject" value="" type="text" placeholder="Subject"/>
+            </div>
+            <div class="form-item">
+                <label for="input-file">Image</label>
+                <video id="player" controls autoplay></video>
+<!--                <input type="file" name="file" id="recognize-input-file" accept="image/*;capture=camera" capture/>-->
+            </div>
+            <div class="form-item">
+                <button id="capture">Capture</button>
+            </div>
+            <div class="form-item">
+                 <canvas id="canvas" width="320" height="240"></canvas>
+            </div>
+            <div class="form-action">
+                <button type="submit" onclick="document.getElementById('id01').style.display='block'">Mark</button>
+            </div>
+        </form>
+
+        <div id="id01" class="modal">  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <form id="confirm-content" class="modal-content animate">
+                <div  class="message">
+
+                </div>
+                <button type="submit">Confirm</button>
+                <button style="background-color:#f1f1f1" type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
